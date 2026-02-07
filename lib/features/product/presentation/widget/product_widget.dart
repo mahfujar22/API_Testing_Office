@@ -26,7 +26,7 @@ Widget buildProductItem(ProductModel product) {
           borderRadius: BorderRadius.circular(12.r),
           boxShadow: [
             BoxShadow(
-              color: AppColors.c000000.withOpacity(0.1),
+              color: AppColors.c000000.withValues(alpha: .1),
               blurRadius: 8.r,
               offset: Offset(0, 2.h),
             ),

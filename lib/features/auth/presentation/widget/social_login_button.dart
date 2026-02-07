@@ -16,7 +16,7 @@ Widget socialLoginButton({
         border: Border.all(color: AppColors.cE8E8E8),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: .5),
             blurRadius: 8.r,
             offset: const Offset(0, 2),
           ),

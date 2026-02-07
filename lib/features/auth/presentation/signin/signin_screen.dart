@@ -28,6 +28,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   
   bool _isLoading = false;
+  
+  get naviagationService => null;
 
   @override
   void dispose() {
@@ -139,17 +141,20 @@ Future<void> _login() async {
                         prefixIcon: Icons.email_outlined,
                         textInputAction: TextInputAction.next,
                       ),
+                      UIHelper.verticalSpace(16.h),
 
-                      // Forgot Password
-                      // Align(
-                      //   alignment: Alignment.centerRight,
-                      //   child: CustomTexButton(
-                      //     onPressed: () {
-                      //       NavigationService.navigateTo(Routes.forgotPWScreen);
-                      //     },
-                      //     title: "Forgot password?",
-                      //   ),
-                      // ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                          onTap: (){
+                            NavigationService.navigateTo(Routes.forgotPasswordScreen);
+                          },
+                          child: Text(
+                            'Forgot Password',
+                            style: TextFontStyle.textStyle14cFF3A1222DMSans600,
+                          ),
+                          ),
+                      ),
 
                       UIHelper.verticalSpace(40.h),
 
@@ -163,22 +168,6 @@ Future<void> _login() async {
                   ),
                 ),
 
-                UIHelper.verticalSpace(40.h),
-
-                // Divider with "Or"
-                Row(
-                  children: [
-                    Expanded(child: _horizontalLine()),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Text(
-                        "Or",
-                        style: TextFontStyle.textStyle14c383838DMSans600,
-                      ),
-                    ),
-                    Expanded(child: _horizontalLine()),
-                  ],
-                ),
                 UIHelper.verticalSpace(40.h),
 
                 // Sign Up Redirect
@@ -197,10 +186,10 @@ Future<void> _login() async {
     );
   }
 
-  Widget _horizontalLine() {
-    return Container(
-      height: 1.h,
-      color: AppColors.cE8E8E8,
-    );
-  }
+  // Widget _horizontalLine() {
+  //   return Container(
+  //     height: 1.h,
+  //     color: AppColors.cE8E8E8,
+  //   );
+  // }
 }

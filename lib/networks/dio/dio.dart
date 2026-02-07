@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:get/get.dart' as getx;
 import '../endpoints.dart';
 import 'log.dart';
 

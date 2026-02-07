@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
 
+import 'package:dio/dio.dart';
 import '../common_widgets/custom_toast.dart';
 
 class ErrorMessageHandler {

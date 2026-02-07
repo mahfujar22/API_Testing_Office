@@ -1,5 +1,7 @@
-import 'dart:async';
+
 import 'package:rxdart/rxdart.dart';
+import 'package:template_flutter/features/auth/data/rx_forgot_pass/rx.dart';
+import 'package:template_flutter/features/auth/data/verify_otp/rx.dart';
 
 
 import '../features/auth/data/model/login_response.dart';
@@ -31,4 +33,15 @@ LoginRx loginRx = LoginRx(
     ),
   ),
   dataFetcher: BehaviorSubject<LoginResponse>(),
+);
+
+
+ForgotPassRx forgotPassRx = ForgotPassRx(
+  empty: {},
+  dataFetcher: BehaviorSubject<Map>(),
+);
+
+VerifyOtpRx verifyRedeemRx = VerifyOtpRx(
+  empty: {},
+  dataFetcher: BehaviorSubject<Map>(),
 );

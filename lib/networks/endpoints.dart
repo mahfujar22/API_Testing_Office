@@ -18,6 +18,8 @@ final class Endpoints {
   //backend_url
   static String signUp() => "/user/signup";
   static String login() => "/login/user";
+  static String forgotPass() => "/forget/password";
+  static String verifyOtp() => "/otp/check";
 
 
 

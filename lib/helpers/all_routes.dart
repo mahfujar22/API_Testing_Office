@@ -2,12 +2,15 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:template_flutter/features/auth/presentation/verify_otp_forgot/veryfy_otp_forgot_screen.dart';
+
+
 
 // import '../features/auth/presentation/login.dart';
 // import '../features/auth/presentation/signup.dart';
+import '../features/auth/presentation/forgot_password/forgot_password_screen.dart';
 import '../features/auth/presentation/sign_up/register_screen.dart';
 import '../features/auth/presentation/signin/signin_screen.dart';
-
 
 final class Routes {
   static final Routes _routes = Routes._internal();
@@ -26,12 +29,13 @@ final class Routes {
   static const String productsScreen = '/ProductsScreen';
   //ProductDetailsScreen
   static const String productDetailsScreen = '/ProductDetailsScreen';
-  
+
   // Main App Routes
   static const String homeScreen = '/home_screen';
   static const String navigationScreen = '/NavigationScreen';
   static const String profile = '/Profile';
-
+  static const String forgotPasswordScreen = '/forgotPasswordScreen';
+  static const String verifyForgotOtpScreen = '/verifyForgotOtpScreen';
 }
 
 final class RouteGenerator {
@@ -45,31 +49,30 @@ final class RouteGenerator {
       case Routes.loginScreen:
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const LoginScreen())
-            : _FadedTransitionRoute(widget: const LoginScreen(), settings: settings);
-      
+            : _FadedTransitionRoute(
+                widget: const LoginScreen(), settings: settings);
+
       case Routes.signUpScreen:
         return defaultTargetPlatform == TargetPlatform.iOS
             ? CupertinoPageRoute(builder: (context) => const SignUpScreen())
-            : _FadedTransitionRoute(widget: const SignUpScreen(), settings: settings);
+            : _FadedTransitionRoute(
+                widget: const SignUpScreen(), settings: settings);
+      case Routes.forgotPasswordScreen:
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(
+                builder: (context) => const ForgotPasswordScreen())
+            : _FadedTransitionRoute(
+                widget: const ForgotPasswordScreen(), settings: settings);
+      case Routes.verifyForgotOtpScreen:
+        final args = settings.arguments as Map<String, dynamic>?;
+        final email = args?['email'] as String? ?? '';
+        return defaultTargetPlatform == TargetPlatform.iOS
+            ? CupertinoPageRoute(
+                builder: (context) => VerifyForgotOtpScreen(email: email))
+            : _FadedTransitionRoute(
+                widget: VerifyForgotOtpScreen(email: email), settings: settings);
 
-      // case Routes.productsWithPagination:
-      //   return defaultTargetPlatform == TargetPlatform.iOS 
-      //       ? CupertinoPageRoute(builder: (context) => const products_pagination.ProductsScreen())
-      //       : _FadedTransitionRoute(widget: const products_pagination.ProductsScreen(), settings: settings);
-      //             case Routes.productsScreen:
-      //   return defaultTargetPlatform == TargetPlatform.iOS 
-      //       ? CupertinoPageRoute(builder: (context) => const ProductsScreen())
-      //       : _FadedTransitionRoute(widget: const ProductsScreen(), settings: settings);
-      // case Routes.productDetailsScreen:
-      //   final args = settings.arguments as Map;
-      //   return defaultTargetPlatform == TargetPlatform.iOS 
-      //       ? CupertinoPageRoute(builder: (context) => ProductDetailsScreen(productId: args['productId']))
-      //       : _FadedTransitionRoute(widget: ProductDetailsScreen(productId: args['productId']), settings: settings);
-      
-      // case Routes.profile:
-      //   return defaultTargetPlatform == TargetPlatform.iOS
-      //       ? CupertinoPageRoute(builder: (context) => const ProfileScreen())
-      //       : _FadedTransitionRoute(widget: const ProfileScreen(), settings: settings);
+     
 
       default:
         return null;

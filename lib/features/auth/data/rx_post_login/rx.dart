@@ -28,9 +28,6 @@ final class LoginRx extends RxResponseInt<LoginResponse> {
         role: role,
       );
 
-      
-
-      // backend status true না হলে এখানেই error throw হবে (LoginApi থেকে)
       final success = await handleSuccessWithReturn(data);
       
       return success;
@@ -41,9 +38,8 @@ final class LoginRx extends RxResponseInt<LoginResponse> {
 
   @override
   Future<bool> handleSuccessWithReturn(LoginResponse data) async {
-    // backend status false হলে এখানে আসা উচিত না — তবুও safety check
     if (!data.status) {
-      ErrorMessageHandler.showErrorToast(data.message ?? "Login failed (invalid response)");
+      ErrorMessageHandler.showErrorToast(data);
       return false;
     }
 

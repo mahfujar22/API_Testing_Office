@@ -28,6 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   bool _isLoading = false;
@@ -69,14 +70,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
         if (success) {
           customToastMessage("Success", "Account created successfully!");
-          print("fdfsd");
-          NavigationService.navigateTo(Routes.loginScreen);
+          // Navigate to home or dashboard after successful signup
+          // Since user is already logged in after signup
+          NavigationService.navigateTo(Routes.homeScreen);
         }
 
-        // Simulate API call
-        await Future.delayed(const Duration(seconds: 2));
-        // customToastMessage("Success", "Account created successfully!");
-        // NavigationService.navigateTo(Routes.navBarScreen);
+        await Future.delayed(const Duration(milliseconds: 500));
       } catch (e) {
         customToastMessage("Failed", "Registration failed. Please try again.");
       } finally {
