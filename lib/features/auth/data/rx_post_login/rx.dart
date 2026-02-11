@@ -4,7 +4,7 @@ import 'package:template_flutter/features/auth/data/rx_post_login/api.dart';
 import 'package:template_flutter/networks/rx_base.dart';
 import '../../../../constants/app_constants.dart';
 import '../../../../helpers/di.dart';
-import '../../../../helpers/error_message_handler.dart'; 
+import '../../../../helpers/error_message_handler.dart';
 import '../../../../helpers/post_login.dart';
 import '../../../../networks/dio/dio.dart';
 import '../model/login_response.dart';
@@ -13,7 +13,6 @@ final class LoginRx extends RxResponseInt<LoginResponse> {
   final api = LoginApi.instance;
 
   LoginRx({required super.empty, required super.dataFetcher});
-
   ValueStream<LoginResponse> get getFileData => dataFetcher.stream;
 
   Future<bool> login({
@@ -29,7 +28,7 @@ final class LoginRx extends RxResponseInt<LoginResponse> {
       );
 
       final success = await handleSuccessWithReturn(data);
-      
+
       return success;
     } catch (error) {
       return handleErrorWithReturn(error);
@@ -39,7 +38,7 @@ final class LoginRx extends RxResponseInt<LoginResponse> {
   @override
   Future<bool> handleSuccessWithReturn(LoginResponse data) async {
     if (!data.status) {
-      ErrorMessageHandler.showErrorToast(data);
+      ErrorMessageHandler.showErrorToast(data.message);
       return false;
     }
 
@@ -56,8 +55,7 @@ final class LoginRx extends RxResponseInt<LoginResponse> {
 
       dataFetcher.sink.add(data);
 
-      performPostLoginActions();
-      
+      await performPostLoginActions();
 
       return true;
     } catch (e) {
@@ -87,3 +85,4 @@ final class LoginRx extends RxResponseInt<LoginResponse> {
     return false;
   }
 }
+

@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:auto_animated/auto_animated.dart';
 import 'package:template_flutter/features/auth/presentation/signin/signin_screen.dart';
 import 'constants/custome_theme.dart';
+import 'features/massage_chat_list/massage_screen.dart';
 import 'gen/colors.gen.dart';
 import 'helpers/all_routes.dart';
 import 'helpers/di.dart';
@@ -75,6 +76,7 @@ class UtillScreenMobile extends StatelessWidget {
               navigatorKey: NavigationService.navigatorKey,
               onGenerateRoute: RouteGenerator.generateRoute,
               home: const LoginScreen (),
+            // home: const MassageScreen(),
               ),
         );
       },

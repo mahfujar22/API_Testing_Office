@@ -9,6 +9,7 @@ import '../../../../constants/text_font_style.dart';
 import '../../../../constants/validator.dart';
 import '../../../../gen/colors.gen.dart';
 import '../../../../helpers/all_routes.dart';
+import '../../../../helpers/loading_helper.dart';
 import '../../../../helpers/navigation_service.dart';
 import '../../../../helpers/ui_helpers.dart';
 import '../../../../networks/api_acess.dart';
@@ -50,18 +51,25 @@ Future<void> _login() async {
       role: _roleController.text.trim(),
     );
 
-    if (success) {
+    if (success && mounted) {
       customToastMessage("Success", "Login successful");
-      // NavigationService.navigateTo(Routes.homeScreen); 
-    } else {
+      NavigationService.navigateTo(Routes.homeScreen);
+    } else if (mounted) {
       customToastMessage("Failed", "Invalid credentials or role");
     }
   } catch (e) {
-    customToastMessage("Error", "Something went wrong: $e");
+    if (mounted) {
+      customToastMessage("Error", "Something went wrong: $e");
+    }
   } finally {
-    if (mounted) setState(() => _isLoading = false);
+    if (mounted) {
+      setState(() => _isLoading = false);
+    }
   }
 }
+
+
+
 
   @override
   Widget build(BuildContext context) {
